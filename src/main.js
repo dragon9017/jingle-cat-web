@@ -71,32 +71,21 @@ new Vue({
         '$route' (to, from) {
             let path = to.matched[to.matched.length - 1].path;
             if (!Setting.dynamicSiderMenu) {
-                let menu = dataUtils.getData(Setting.key.menu)
-
-                if (menu != null) {
-                    const headerName = getHeaderName(path, menu);
+                let headerName = getHeaderName(path, menuSider);
+                if (headerName === null) {
+                    path = to.path;
+                    headerName = getHeaderName(path, menuSider);
+                }
+                // 在 404 时，是没有 headerName 的
+                if (headerName !== null) {
                     this.$store.commit('admin/menu/setHeaderName', headerName);
-                    const filterMenuSider = getMenuSider(menu, headerName);
-                    this.$store.commit('admin/menu/setSider', filterMenuSider);
-                    this.$store.commit('admin/menu/setActivePath', path);
+                    this.$store.commit('admin/menu/setMenuSider', menuSider);
 
-                    let openNames = ''
-                    var replacePath = null
-                    if(Setting.replaceRoute!=null){
-                        for (let i = 0;i<Setting.replaceRoute.length;i++){
-                            if (path.indexOf(Setting.replaceRoute[i].from) >= 0) {
-                                replacePath = Setting.replaceRoute[i].to
-                                break;
-                            }
-                        }
-                    }
-                    if (replacePath!=null) {
-                        this.$store.commit('admin/menu/setActivePath', replacePath);
-                        openNames = getSiderSubmenu(replacePath, menuSider);
-                    } else {
-                        this.$store.commit('admin/menu/setActivePath', path);
-                        openNames = getSiderSubmenu(path, menuSider);
-                    }
+                    const filterMenuSider = getMenuSider(menuSider, headerName);
+                    this.$store.commit('admin/menu/setSider', filterMenuSider);
+                    this.$store.commit('admin/menu/setActivePath', to.path);
+
+                    const openNames = getSiderSubmenu(path, menuSider);
                     this.$store.commit('admin/menu/setOpenNames', openNames);
                 }
             }
