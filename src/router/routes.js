@@ -1,5 +1,6 @@
 import dashboard from './modules/dashboard';
 import auth from './modules/auth';
+import system from './modules/system';
 import BasicLayout from '@/layouts/basic-layout';
 
 /**
@@ -57,7 +58,8 @@ const frameIn = [
         ]
     },
     dashboard,
-    auth
+    auth,
+    system
 ];
 
 /**

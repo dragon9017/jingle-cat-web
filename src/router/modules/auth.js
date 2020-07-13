@@ -24,6 +24,15 @@ export default {
                 closable: false
             },
             component: () => import('@/pages/system/menu')
+        },{
+            path: 'role',
+            name: `${pre}role`,
+            meta: {
+                ...meta,
+                title: '角色管理',
+                closable: false
+            },
+            component: () => import('@/pages/system/role')
         }
     ]
 };

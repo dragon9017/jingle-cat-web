@@ -38,12 +38,15 @@ secretUtils.DecryptData = (data) => {
  */
 secretUtils.permission = (el, data) => {
     let have = false
-    const permissions = dataUtils.getData(Setting.key.permissions)
-    if (permissions != null) {
-        for(let i = 0;i<permissions.length;i++){
-            if(permissions[i]==data){
-                have = true
-                break;
+    const userInfo = dataUtils.getData(Setting.key.userInfo)
+    if(userInfo!=null){
+        let permissions = userInfo.permissions
+        if (permissions != null) {
+            for(let i = 0;i<permissions.length;i++){
+                if(permissions[i]==data){
+                    have = true
+                    break;
+                }
             }
         }
     }

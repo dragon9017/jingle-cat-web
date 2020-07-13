@@ -96,7 +96,7 @@ Vue.directive('permission', {
         if (binding.value == null) {
             return
         }
-        //secretUtils.permission(el, binding.value.value)
+        secretUtils.permission(el, binding.value.value)
     }
 })
 
@@ -122,7 +122,6 @@ new Vue({
             const path = to.path;
             if (!Setting.dynamicSiderMenu) {
                 let menu = dataUtils.getData(Setting.key.menu)
-                console.log(menu)
                 if (menu != null) {
                     const headerName = getHeaderName(path, menu);
                     this.$store.commit('admin/menu/setHeaderName', headerName);
