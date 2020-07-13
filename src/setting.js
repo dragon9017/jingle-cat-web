@@ -11,7 +11,7 @@ const Setting = {
     // 网页标题的后缀
     titleSuffix: 'iView Admin Pro',
     // 路由模式，可选值为 history 或 hash
-    routerMode: 'history',
+    routerMode: 'hash',
     // 应用的基路径
     routerBase: '/',
     // 页面切换时，是否显示模拟的进度条
@@ -112,13 +112,15 @@ const Setting = {
     // 相同路由，不同参数间进行切换，是否强力更新
     sameRouteForceUpdate: false,
     // 是否使用动态侧边菜单
-    dynamicSiderMenu: true,
+    dynamicSiderMenu: false,
     //缓存key
     key:{
         token:'TOKEN',
         userInfo:'USERINFO',
         menu:'MENU',
-    }
+    },
+    //替换路由
+    replaceRoute:[]
 };
 
 export default Setting;

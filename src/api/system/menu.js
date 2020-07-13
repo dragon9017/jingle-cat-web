@@ -10,7 +10,7 @@ export function getMenu(id) {
 
 export function getTopMenu() {
   return request({
-    url: '/admin/menu',
+    url: '/system/menu',
     params: {type: 'left'},
     method: 'get'
   })
@@ -18,7 +18,7 @@ export function getTopMenu() {
 
 export function fetchMenuTree(query) {
   return request({
-    url: '/admin/menu/tree',
+    url: '/system/menu/tree',
     method: 'get',
     params: query
   })
@@ -26,7 +26,7 @@ export function fetchMenuTree(query) {
 
 export function addObj(obj) {
   return request({
-    url: '/admin/menu',
+    url: '/system/menu',
     method: 'post',
     data: obj
   })
@@ -34,21 +34,21 @@ export function addObj(obj) {
 
 export function getObj(id) {
   return request({
-    url: '/admin/menu/' + id,
+    url: '/system/menu/' + id,
     method: 'get'
   })
 }
 
 export function delObj(id) {
   return request({
-    url: '/admin/menu/' + id,
+    url: '/system/menu/' + id,
     method: 'delete'
   })
 }
 
 export function putObj(obj) {
   return request({
-    url: '/admin/menu',
+    url: '/system/menu',
     method: 'put',
     data: obj
   })

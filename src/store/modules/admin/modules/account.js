@@ -53,12 +53,7 @@ export default {
 
                                     getMenu().then(async menuRes=>{
                                         dataUtils.setData(Setting.key.menu,menuRes.data)
-                                        // 设置 vuex 用户信息
-                                        await dispatch('admin/user/set', userRes.data.sysUser, {root: true});
-                                        // 用户登录后从持久化数据加载一系列的设置
-                                        await dispatch('load');
-                                        // 结束
-                                        resolve();
+                                        resolve(userRes);
                                     }).catch(err => {
                                         reject(err);
                                     })

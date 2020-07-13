@@ -1,7 +1,7 @@
 import BasicLayout from '@/layouts/basic-layout';
 
 const meta = {
-    auth: false
+    auth: true
 };
 
 const pre = 'dashboard-';

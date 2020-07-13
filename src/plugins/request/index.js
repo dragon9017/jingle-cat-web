@@ -5,6 +5,7 @@ import Setting from '@/setting';
 import dataUtils from '@/utils/dataUtils'
 
 import { Message, Notice } from 'view-design';
+import appUtils from "../../utils/appUtils";
 
 // 创建一个错误
 function errorCreate (msg) {
@@ -30,16 +31,9 @@ function errorLog (err) {
     }
     // 显示提示，可配置使用 iView 的 $Message 还是 $Notice 组件来显示
     if (Setting.errorModalType === 'Message') {
-        Message.error({
-            content: err.message,
-            duration: Setting.modalDuration
-        });
+        appUtils.showError(err.message)
     } else if (Setting.errorModalType === 'Notice') {
-        Notice.error({
-            title: '提示',
-            desc: err.message,
-            duration: Setting.modalDuration
-        });
+        appUtils.showError(err.message)
     }
 }
 
@@ -106,7 +100,9 @@ service.interceptors.response.use(
                 case 401:
                     error.message = '未授权，请登录';
                     dataUtils.removeAllData();
-                    location.reload()
+                    setTimeout(()=>{
+                        location.reload()
+                    },2000)
                     break;
                 case 403:
                     error.message = '拒绝访问';
@@ -124,7 +120,7 @@ service.interceptors.response.use(
                     error.message = error.response.data.msg;
                     break;
                 case 500:
-                    error.message = '服务器内部错误';
+                    error.message = error.response.data.msg;
                     break;
                 case 501:
                     error.message = '服务未实现';
