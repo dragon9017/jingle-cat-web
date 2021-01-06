@@ -16,7 +16,7 @@
     "@babel/runtime": "^7.2.0",
     "@smallwei/avue": "^2.6.10",
     "avue-plugin-map": "^1.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "better-scroll": "^1.12.1",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.9",
